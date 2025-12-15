@@ -1,0 +1,13 @@
+# Python specifics
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# IDE specific
+.vscode/
+.idea/
+
+# Database
+*.db
+*.sqlite3
