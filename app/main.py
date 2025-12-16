@@ -1,18 +1,25 @@
 from fastapi import FastAPI
+from contextlib import asynccontextmanager
+from app.core.database import engine, Base
 
-# Initializing FastAPI app with project metadata for auto-generated docs
+from app.models import invoice 
+
+# 1. Defining what happens when the app starts
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: Create tables
+    print("Creating tables...")
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    yield
+    # Shutdown: (Nothing to do yet)
+
 app = FastAPI(
     title="Invoice Intelligence API",
-    description="A portfolio project for extracting data from German invoices.",
-    version="0.1.0"
+    version="0.2.0",
+    lifespan=lifespan # Connect the lifespan logic
 )
 
-# Root endpoint: simple health check
-# Returns 200 OK if the server is running
 @app.get("/")
 def read_root():
-    return {
-        "project": "Invoice Intelligence",
-        "status": "online",
-        "author": "Student Candidate" 
-    }
+    return {"status": "online", "db": "connected"}
