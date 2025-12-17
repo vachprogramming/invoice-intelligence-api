@@ -17,20 +17,18 @@ class Settings(BaseSettings):
         if self.DATABASE_URL:
             url = self.DATABASE_URL
             
-            # Remove parameters not supported by asyncpg (e.g., channel_binding)
+            # Remove parameters not supported by asyncpg
+            # asyncpg handles SSL via connect_args, not URL params
             import re
             url = re.sub(r'[&?]channel_binding=[^&]*', '', url)
+            url = re.sub(r'[&?]sslmode=[^&]*', '', url)
+            
+            # Clean up orphaned ? at the end if all params were removed
+            url = re.sub(r'\?$', '', url)
             
             # This handles "postgres://", "postgresql://", etc.
             if "postgresql+asyncpg://" not in url:
                 url = "postgresql+asyncpg://" + url.split("://", 1)[1]
-            
-            # Ensuring SSL is enabled (Required for Neon)
-            if "ssl=require" not in url:
-                if "?" in url:
-                    url += "&ssl=require"
-                else:
-                    url += "?ssl=require"
                     
             return url
             
