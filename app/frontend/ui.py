@@ -9,16 +9,33 @@ API_URL = "http://127.0.0.1:8000/api/v1/upload"
 st.set_page_config(page_title="Invoice Intelligence", page_icon="💰")
 
 # Sidebar
+# Sidebar
 with st.sidebar:
     st.header("About")
     st.markdown("""
-    This app uses **Llama-3 (AI)** to extract structured data from PDF invoices.
-    
-    **Tech Stack:**
-    - 🐍 Python & FastAPI
-    - 🐳 Docker & PostgreSQL
-    - 🧠 HuggingFace Inference
+    **Invoice Intelligence**
+    Extracts structured data from PDFs using Llama-3.2.
     """)
+    
+    st.divider()
+    
+    st.header("Try it out")
+    st.write("Don't have an invoice?")
+    
+    # LOAD THE SAMPLE FILE
+    # We use a try-except block in case the file is missing
+    try:
+        with open("frontend/sample_invoice.pdf", "rb") as f:
+            st.download_button(
+                label="📄 Download Sample PDF",
+                data=f,
+                file_name="sample_invoice.pdf",
+                mime="application/pdf"
+            )
+    except FileNotFoundError:
+        st.warning("Sample file not found.")
+
+    st.divider()
     st.success("Backend Status: Online")
 
 # Main Content

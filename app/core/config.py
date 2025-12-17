@@ -13,6 +13,16 @@ class Settings(BaseSettings):
     def DATABASE_URL(self) -> str:
         return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
 
+    @property
+    def FINAL_DATABASE_URL(self) -> str:
+        if self.DATABASE_URL:
+            url = self.DATABASE_URL.replace("postgres://", "postgresql+asyncpg://")
+            if "?" not in url:
+                url += "?ssl=require"
+            return url
+            
+        return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"    
+
     model_config = {
         "env_file": ".env",
         "extra": "ignore"
