@@ -6,6 +6,7 @@ huggingface-hub
 python-dotenv
 asyncpg
 sqlalchemy
+psycopg2-binary
 pydantic-settings
 uvloop; sys_platform != 'win32'
 email-validator
