@@ -12,7 +12,7 @@ class Invoice(Base):
     filename = Column(String, nullable=False)
     extraction_date = Column(DateTime(timezone=True), server_default=func.now())
 
-    # Extracted Fields (Matches the Pydantic Schema we will write next)
+    # Extracted Fields (Matches the Pydantic Schema)
     invoice_number = Column(String, nullable=True)
     vendor_name = Column(String, nullable=True)
     invoice_date = Column(Date, nullable=True)

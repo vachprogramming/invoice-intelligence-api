@@ -4,6 +4,8 @@ from app.core.database import engine, Base
 
 from app.models import invoice 
 
+from app.api.endpoints import invoices
+
 # 1. Defining what happens when the app starts
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -19,6 +21,9 @@ app = FastAPI(
     version="0.2.0",
     lifespan=lifespan # Connect the lifespan logic
 )
+
+# Connect the router
+app.include_router(invoices.router, prefix="/api/v1", tags=["invoices"])
 
 @app.get("/")
 def read_root():
