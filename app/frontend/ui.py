@@ -4,7 +4,7 @@ import pandas as pd
 import json
 
 # Configuration
-API_URL = "https://invoice-api-4vcs.onrender.com/v1/upload"
+API_URL = "https://invoice-api-4vcs.onrender.com/api/v1/upload"
 
 st.set_page_config(page_title="Invoice Intelligence", page_icon="💰")
 
@@ -25,7 +25,7 @@ with st.sidebar:
     # LOAD THE SAMPLE FILE
     # We use a try-except block in case the file is missing
     try:
-        with open("frontend/sample_invoice.pdf", "rb") as f:
+        with open("app/frontend/sample_invoice.pdf", "rb") as f:
             st.download_button(
                 label="📄 Download Sample PDF",
                 data=f,
