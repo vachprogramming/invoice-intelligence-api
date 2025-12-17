@@ -4,11 +4,11 @@ from app.core.config import settings
 
 # 1. Create the Engine with strict settings
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    settings.FINAL_DATABASE_URL,
     echo=True,
     # This dictionary is passed directly to asyncpg
     connect_args={
-        "ssl": False,            # <--- Disable SSL (Fixing connection_lost)
+        "ssl": "require",        # <--- Enable SSL (Required for Neon)
         "server_settings": {
             "jit": "off"         # <--- Optimization for asyncpg
         }
