@@ -4,7 +4,7 @@ import pandas as pd
 import json
 
 # Configuration
-API_URL = "http://127.0.0.1:8000/api/v1/upload"
+API_URL = "https://invoice-api-4vcs.onrender.com/v1/upload"
 
 st.set_page_config(page_title="Invoice Intelligence", page_icon="💰")
 
