@@ -33,5 +33,3 @@ The system follows a modern decoupled architecture:
 * **Infrastructure:** Render (Dockerized Web Service), Streamlit Cloud
 
 ---
-
-### 📂 Project Structure
