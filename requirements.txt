@@ -10,3 +10,5 @@ pydantic-settings
 uvloop; sys_platform != 'win32'
 email-validator
 requests
+streamlit
+pandas
