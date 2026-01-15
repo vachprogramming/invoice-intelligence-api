@@ -9,7 +9,7 @@ An AI-powered document processing pipeline that extracts structured data (JSON) 
 ---
 
 ### 🚀 **Live Demo**
-**[Click here to try the App](https://vachprogramming-invoice-intelligence-api-appfrontendui-qohw3h.streamlit.app/)**
+**[Click here to try the App](https://invoice-intelligence.streamlit.app/)**
 
 > ⚠️ **Note on Free Hosting:**
 > The backend is hosted on Render's Free Tier, which "spins down" after inactivity.
